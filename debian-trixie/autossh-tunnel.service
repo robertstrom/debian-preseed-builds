@@ -1,1 +1,11 @@
+[Unit]
+Description=AutoSSH tunnel service everythingcli - Debian Base OS
+After=network.target
+
+[Service]
+Environment="AUTOSSH_GATETIME=0"
+ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -i /home/rstrom/.ssh/rstrom.cloud.id_ed25519 -R 2222:localhost:22 -R 23389:localhost:3389 -o "StrictHostKeyChecking=no" <your remote server> -N
+
+[Install]
+WantedBy=multi-user.target
 
