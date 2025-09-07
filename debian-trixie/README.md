@@ -4,8 +4,13 @@ I will list each of the file nmames in the order that they are used and give at 
 
 # General setup
 
-There is a **netboot.xyz** server that uses the 
+There is a **netboot.xyz** server that uses the `netboot.xyz_debian.ipxe` file to perform the PXE boot and point the system to the preseed file named **debian-kde-preseed.cfg**. The **debian-kde-preseed.cfg** and all other files are hosted in a directory on the **netboot.xyz** server using a simple python3 http server started using the command `sudo python3 -m http.server 80`
 
+- netboot.xyz_debian.ipxe - the Debian ipxe file from the **netboot.xyz** system. This is a slightly modified default ipxe file. The line that is modified is the kernel line. The modification points to the preseed file and tells the preseed build to stop and wait for input of the systems hostname and domain.
+- debian-kde-preseed.cfg - The Debian preseed file
+- 
+
+ 
  - .tmux.conf - this is a copy of my tmux configuration file
 00-general.conf
 1
@@ -14,7 +19,7 @@ There is a **netboot.xyz** server that uses the
 autossh-tunnel.service
 bridged-network.xml
 CommandoVM.xml
-debian-kde-preseed.cfg
+
 debian-preseed-postinstall.sh
 debian_base_os_ssh_tunnel.sh
 first_login_script.sh
