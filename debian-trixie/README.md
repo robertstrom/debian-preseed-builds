@@ -16,7 +16,24 @@ There is a **netboot.xyz** server that uses the `netboot.xyz_debian.ipxe` file t
   - Creates a **br0** bridge interface that makes it possible for KVM virtual machines to use bridged networking when the system has only one NIC
   - The **bridged-network.xml** file is copied over
   - The **bridged-network.xml** is used to define the bridged network within KVM, the bridged network is set to autostart
-  - Two preconfigured KVM virtual machines are copied over using **rsync** which is configured to copy **sparse** files, leaving them sparse, and copy over the large files so that the copy can be restarted if necessary. Some permissions on the **/var/lib/libvirt/images/** directory so that the virtual machines can be acccessed without having to sudo or use root. The two virtual machines are **defined** for KVM, the virtual machines are set to auto-start, the **modified-ethernet-interfaces.txt** file is copied over. This file is used to tell the **br0** interface what the master Ethernet interface is (the real NIC that is needs to bind to). An **awk** command is run to find out what the Ethernet interface name is and then **sed** is used to modify the **/etc/network/interfaces** file so that the **br0** bridge is associated with the correct interface name. The **00-general.conf** file is copied over. This file configures the KDE so that the users name is not displayed on the logon screen. The **state.conf** file is copied over. This file also helps to ensure that the last logged on user is not displyed on the logon screen. The file is then permissioned so that it cannot be written to. The **KDE_settings_backup.tar** file is copied over. This file is created using the **KBackup** program. This backup contains the preconfigured, desired, KDE settings. The **kde-settings.kbp** file is copied over. This file is a KBackup program profile that contains the files that are to be backed up for saving the KDE settings. Some directories are created for the **broot** program and a file named **1** is copied over. This preconfigures the **broot** **br** function. The **KDE_settings_backup.tar** is extracted placing all the preconfigured configuration files into the users profile. The **autossh-tunnel.service** file is copied over and the service is configured to be enabled. The **50-allow-network-manager.rule** file is copied over. This file ensures that **polkit** doesn't prompt for credentials when you log in via XRDP. The **first_login_script.sh** script is copied over. A preconfigured `.zshrc` file is copied over. A CopyQ backup is copied over. The tmux plug-in manager is installed. A preconfigured `.tmux.conf` file is copied over.
+  - Two preconfigured KVM virtual machines are copied over using **rsync** which is configured to copy **sparse** files, leaving them sparse, and copy over the large files so that the copy can be restarted if necessary
+  - Some permissions on the **/var/lib/libvirt/images/** directory so that the virtual machines can be acccessed without having to sudo or use root.
+  - The two virtual machines are **defined** for KVM, the virtual machines are set to auto-start
+  - The **modified-ethernet-interfaces.txt** file is copied over. This file is used to tell the **br0** interface what the master Ethernet interface is (the real NIC that is needs to bind to)
+  - An **awk** command is run to find out what the Ethernet interface name is and then **sed** is used to modify the **/etc/network/interfaces** file so that the **br0** bridge is associated with the correct interface name
+  - The **00-general.conf** file is copied over. This file configures the KDE so that the users name is not displayed on the logon screen
+  - The **state.conf** file is copied over. This file also helps to ensure that the last logged on user is not displyed on the logon screen. The file is then permissioned so that it cannot be written to
+  - The **KDE_settings_backup.tar** file is copied over. This file is created using the **KBackup** program. This backup contains the preconfigured, desired, KDE settings
+  - The **kde-settings.kbp** file is copied over. This file is a KBackup program profile that contains the files that are to be backed up for saving the KDE settings
+  - Some directories are created for the **broot** program and a file named **1** is copied over. This preconfigures the **broot** **br** function
+  - The **KDE_settings_backup.tar** is extracted placing all the preconfigured configuration files into the users profile
+  - The **autossh-tunnel.service** file is copied over and the service is configured to be enabled
+  - The **50-allow-network-manager.rule** file is copied over. This file ensures that **polkit** doesn't prompt for credentials when you log in via XRDP
+  - The **first_login_script.sh** script is copied over
+  - A preconfigured `.zshrc` file is copied over
+  - A CopyQ backup is copied over
+  - The tmux plug-in manager is installed
+  - A preconfigured `.tmux.conf` file is copied over
 - 
 
  
