@@ -11,14 +11,6 @@ export HOME=/home/rstrom
 export USER=rstrom
 cd $HOME
 
-# Create the ninja-pi-1 user account with hashed password
-# useradd -m -p '$6$SMpwRrTjjZpcAW/I$A3C9PV/nY0nDl58FKVpu3jFtAKt4vCrmY7QpDjhDInTnWH38F3nLYA6duxIMfKOBN0uoqSeFJNDlykCBQhJfz.' ninja-pi-1
-
-
-# export NINJAHOME=/home/ninja-pi-1
-# export NINJAUSER=ninja-pi-1
-
-
 # Setup fuse group and add user to fuse group for sshfs use
 groupadd fuse
 usermod -aG fuse rstrom
@@ -43,10 +35,10 @@ usermod -aG wireshark rstrom
 
 # rstrom SSH key setup
 mkdir -p $HOME/.ssh
-echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPBQTiI5GjFrUKIRmWyQ01krW3mUdQ99y9O+1vE0VZo5 rstrom@debian-dell-xps' > $HOME/.ssh/authorized_keys
-echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINjX0xOWmLhaHeNECapiNJ3rfJntbPGIEY2/z/dBsc3G rstrom@ansible-pi5' >> $HOME/.ssh/authorized_keys
-echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPESjHdmvcmvmFLFCDdVqtK5OokwC5DNHgzDdLx6Pva0 rstrom@oryx-pro' >> $HOME/.ssh/authorized_keys
-echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUMniLf0krUHqXSXx2bLIOPxAdOKSqPDEHRTXtgCvx3 rstrom@ubuntu-s-1vcpu-1gb-sfo3-01' >> $HOME/.ssh/authorized_keys
+echo '<your ssh public key rstrom@debian-dell-xps>' > $HOME/.ssh/authorized_keys
+echo '<your ssh public key rstrom@ansible-pi5>' >> $HOME/.ssh/authorized_keys
+echo '<your ssh public key rstrom@oryx-pro>' >> $HOME/.ssh/authorized_keys
+echo '<your ssh public key rstrom@ubuntu-s-1vcp>' >> $HOME/.ssh/authorized_keys
 
 wget -O $HOME/.ssh/rstrom.cloud.id_ed25519 http://192.168.0.82/rstrom.cloud.id_ed25519
 wget -O $HOME/.ssh/rstrom.cloud.id_ed25519.pub http://192.168.0.82/rstrom.cloud.id_ed25519.pub
@@ -55,16 +47,6 @@ chmod 700 $HOME/.ssh
 chmod 600 $HOME/.ssh/authorized_keys
 chmod 600 $HOME/.ssh/rstrom.cloud.id_ed25519
 chmod 644 $HOME/.ssh/rstrom.cloud.id_ed25519.pub
-
-# ninja-pi-1 SSH key setup
-# mkdir -p $NINJAHOME/.ssh
-# echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPBQTiI5GjFrUKIRmWyQ01krW3mUdQ99y9O+1vE0VZo5 rstrom@debian-dell-xps' > $HOME/.ssh/authorized_keys
-# echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINjX0xOWmLhaHeNECapiNJ3rfJntbPGIEY2/z/dBsc3G rstrom@ansible-pi5' >> $HOME/.ssh/authorized_keys
-# echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPESjHdmvcmvmFLFCDdVqtK5OokwC5DNHgzDdLx6Pva0 rstrom@oryx-pro' >> $HOME/.ssh/authorized_keys
-# chown -R ninja-pi-1:ninja-pi-1 $NINJAHOME/.ssh
-# chmod 700 $NINJAHOME/.ssh
-# chmod 600 $NINJAHOME/.ssh/authorized_keys
-# ssh-keygen -t ed25519 -N "" -f $NINJAHOME/.ssh/ninja-pi-1.cloud.id_ed25519
 
 # Create $HOME/.local/bin/ directory
 sudo -u rstrom mkdir -p $HOME/.local/bin/
